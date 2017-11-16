@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kloiacom-wpress
+  labels:
+    app: kloiacom-wpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kloiacom-wpress
+  template:
+    metadata:
+      labels:
+        app: kloiacom-wpress
+    spec:
+      containers:
+        - image: wordpress
+          name: kloiacom-wpress
+          env:
+          - name: WORDPRESS_DB_HOST
+            value: mysql:3306
+          - name: WORDPRESS_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql
+                key: password
+          - name: WORDPRESS_DB_NAME
+            value: kloiacom
+          ports:
+            - containerPort: 80
+              name: kloiacom-wpress
+          volumeMounts:
+            - name: wordpress-persistent-storage
+              mountPath: /var/www/html
+#            - name: uploads-ini
+#              mountPath: /usr/local/etc/php/conf.d
+      volumes:
+        - name: wordpress-persistent-storage
+          gcePersistentDisk:
+            pdName: kloiacom-wordpress-disk
+            fsType: ext4
+#        - name: uploads-ini
+#          configMap:
+#            name: upload-ini

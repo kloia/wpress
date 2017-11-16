@@ -1,4 +1,4 @@
-## kloia Wordpress Migration from EC2 to GKE ##<br />
+## kloia Wordpress Migration from EC2 to GKE ##
 <br />
 Steps: <br />
 1- Create cluster on GKE with name wpress-cluster-1 <br />

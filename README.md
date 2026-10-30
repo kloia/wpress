@@ -1,3 +1,6 @@
+> **Archived.** This repository is no longer maintained
+> and is kept read-only. It may be removed in the future.
+
 ## kloia Wordpress Migration from EC2 to GKE ##
 <br />
 Steps: <br />
@@ -28,6 +31,3 @@ kubectl create -f mysql-service.yaml<br />
 <br />
 kubectl create -f kloiacom-wordpress.yaml<br />
 kubectl create -f kloiacom-wordpress-service.yaml<br />
-
-
-
